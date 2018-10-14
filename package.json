@@ -1,13 +1,15 @@
 {
-  "name": "formacompanyui",
+  "name": "Big Gulp",
+  "title": "Big Gulp of SASS and Bootstrap",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Gulp Framework",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tristanisginger/big-gulp.git"
   },
-  "author": "",
-  "license": "ISC",
+  "main": "index.js",
+  "author": "Daniel Roberts, Nicolay Hekkens, Tristan Blackburn",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
@@ -17,7 +19,6 @@
     "gulp-html-ssi": "0.0.92",
     "gulp-imagemin": "^4.1.0",
     "gulp-plumber": "^1.2.0",
-    "gulp-ruby-sass": "^3.0.0",
     "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemap": "^1.0.1",
