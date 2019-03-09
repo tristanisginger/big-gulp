@@ -20,7 +20,7 @@ gulp.task('markup', function(){
 
 // SASS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 gulp.task('styles', function() {
-    return gulp.src('src/styles/**/*.scss')
+    return gulp.src('src/styles/everything.scss')
     	.pipe(plumber())								// stop gulp exiting on error
     	.pipe(sourcemaps.init())						// initialise sourcemap
         .pipe(sass())									// compile

@@ -23,5 +23,8 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemap": "^1.0.1",
     "gulp-uglify": "^3.0.1"
+  },
+  "dependencies": {
+    "popper.js": "^1.14.7"
   }
 }
