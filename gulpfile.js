@@ -2,6 +2,7 @@
 var gulp = require('gulp'),	
 	sourcemaps = require('gulp-sourcemaps'),			// source map
 	includer = require('gulp-html-ssi'),				// bundle html
+	uglify = require('gulp-uglify'),					// min js
 	sass = require('gulp-sass'),						// scss to csss
 	autoprefixer = require('gulp-autoprefixer'),		// cross browser css (-webkit, ms-, etc)
 	cssnano = require('gulp-cssnano'),					// minify css
@@ -16,6 +17,23 @@ gulp.task('markup', function(){
 	gulp.src('src/markup/**/*.html')
 	.pipe(includer())									// compile includes and componenet
 	.pipe(gulp.dest('build/'))
+});
+
+
+// JS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+gulp.task('scripts', function(){
+    return gulp.src([
+		// 'src/scripts/vendor/**/*.js',
+            // 'src/scripts/core/helper.js',
+           
+            'src/scripts/core/**/*.js',
+			'src/scripts/components/**/*.js',
+			'src/scripts/dev/**/*.js'])
+        .pipe(sourcemaps.init())
+        .pipe(concat('build.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('build/assets/scripts'));
 });
 
 // SASS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
@@ -55,14 +73,16 @@ gulp.task('browserSync', function() {
 // WATCH \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 gulp.task('watch', function(){
 	gulp.watch('src/markup/**/*.html',['markup']);
+	gulp.watch('src/scripts/**/*.js',['scripts']);
 	gulp.watch('src/styles/**/*.scss',['styles']);
 	gulp.watch('build/*.html', browserSync.reload);
+	gulp.watch('build/assets/scripts/**/*.js', browserSync.reload);
 	gulp.watch('build/assets/styles/**/*.css', browserSync.reload);
 });
 
 // BIG GULP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 gulp.task('default', function (callback) {
-	runSequence(['markup', 'styles', 'browserSync', 'watch'],
+	runSequence(['markup', 'styles', 'scripts', 'browserSync', 'watch'],
 		callback
 	)
 })
