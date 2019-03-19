@@ -1,5 +1,5 @@
 {
-  "name": "Big Gulp",
+  "name": "big-gulp",
   "title": "Big Gulp of SASS and Bootstrap",
   "version": "1.0.0",
   "description": "Gulp Framework",
@@ -8,23 +8,29 @@
     "url": "git://github.com/tristanisginger/big-gulp.git"
   },
   "main": "index.js",
-  "author": "Daniel Roberts, Nicolay Hekkens, Tristan Blackburn",
+  "author": "Tristan Blackburn",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "browser-sync": "^2.26.3",
-    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
-    "gulp-html-ssi": "0.0.92",
-    "gulp-imagemin": "^4.1.0",
+    "gulp-file-include": "^2.0.1",
+    "gulp-html-partial": "^1.0.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-inject": "^5.0.2",
     "gulp-plumber": "^1.2.0",
     "gulp-run-sequence": "^0.3.2",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemap": "^1.0.1",
-    "gulp-uglify": "^3.0.1"
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
+    "gulp": "3.9.1",
+    "gulp-cli": "^2.0.1",
     "popper.js": "^1.14.7"
   }
 }
