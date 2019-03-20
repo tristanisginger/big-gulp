@@ -12,6 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.2.3",
     "browser-sync": "^2.26.3",
     "gulp-autoprefixer": "^6.0.0",
@@ -30,8 +31,10 @@
   },
   "dependencies": {
     "gulp": "3.9.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-cli": "^2.0.1",
-    "popper.js": "^1.14.7"
+    "popper.js": "^1.14.7",
+    "save-dev": "^2.0.0"
   },
   "babel": {
     "presets": [

@@ -12,7 +12,8 @@ var gulp = require("gulp"),
   //imagemin = require("gulp-imagemin"),              // minify images
   plumber = require("gulp-plumber"),                // error checking
   browserSync = require("browser-sync").create(),   // browsersync
-  runSequence = require("run-sequence"),       // run tasks in sequence
+  runSequence = require("run-sequence"),            // run tasks in sequence
+  browserify = require('gulp-browserify'),          // pull in js packages like require
   babel = require("gulp-babel");
 
 gulp.task("fileinclude", function() {
@@ -58,12 +59,13 @@ gulp.task("scripts", function() {
     .pipe(sourcemaps.init())
     .pipe(concat("build.js"))
     .pipe(babel({ presets: ['@babel/env'] }))
-    .pipe(uglify())
+    .pipe(browserify({
+        insertGlobals : true
+      }))
+    //.pipe(uglify())
     .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest("build/assets/scripts/"));
-  // .pipe(browserSync.reload({
-  // 	stream: true
-  // }))
+
 });
 
 // SASS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
