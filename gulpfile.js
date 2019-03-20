@@ -57,7 +57,7 @@ gulp.task("scripts", function() {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat("build.js"))
-    .pipe(babel({ presets: ['@babel/env'] })) // #3. transpile ES2015 to ES5 using ES2015 preset
+    .pipe(babel({ presets: ['@babel/env'] }))
     .pipe(uglify())
     .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest("build/assets/scripts/"));
@@ -108,7 +108,7 @@ gulp.task("watch", function() {
   gulp.watch("src/*.html", ["fileinclude"]);
   gulp.watch("src/components/**/*.html", ["fileinclude"]);
   gulp.watch("src/components/**/*.js", ["scripts"]);
-  gulp.watch("src/scripts/**/*.js", ["scripts"]);
+  gulp.watch("src/scripts/*.js", ["scripts"]);
   gulp.watch("src/styles/**/*.scss", ["styles"]);
   gulp.watch("src/styles/2-plugins/**/*.scss", ["styles"]);
   gulp.watch("src/styles/3-base/**/*.scss", ["styles"]);
