@@ -12,7 +12,7 @@ var gulp = require("gulp"),
   //imagemin = require("gulp-imagemin"),              // minify images
   plumber = require("gulp-plumber"),                // error checking
   browserSync = require("browser-sync").create(),   // browsersync
-  runSequence = require("gulp-run-sequence"),       // run tasks in sequence
+  runSequence = require("run-sequence"),       // run tasks in sequence
   babel = require("gulp-babel");
 
 gulp.task("fileinclude", function() {
