@@ -3,19 +3,29 @@ var gulp = require("gulp"),
   sourcemaps = require("gulp-sourcemaps"),          // source map
   inject = require("gulp-inject"),                  // bundle html
   htmlPartial = require("gulp-html-partial"),       // partials wooo
-  fileinclude = require("gulp-file-include"),       // bundle html
   uglify = require("gulp-uglify"),                  // min js
   sass = require("gulp-sass"),                      // scss to css
   autoprefixer = require("gulp-autoprefixer"),      // cross browser css (-webkit, ms-, etc)
-  cssnano = require("gulp-cssnano"),                // minify css
+//  cssnano = require("gulp-cssnano"),                // minify css
   concat = require("gulp-concat"),                  // bundle files
-  //imagemin = require("gulp-imagemin"),              // minify images
+//  imagemin = require("gulp-imagemin"),              // minify images
   plumber = require("gulp-plumber"),                // error checking
   browserSync = require("browser-sync").create(),   // browsersync
   runSequence = require("run-sequence"),            // run tasks in sequence
   browserify = require('gulp-browserify'),          // pull in js packages like require
   babel = require("gulp-babel");
 
+var jsSrc = [
+    // Vendor JS
+    "node_modules/jquery/dist/jquery.min.js",
+    "node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "node_modules/popper.js/dist/umd/popper.min.js",
+
+    // Dev JS
+    "src/scripts/app.js"
+]
+
+// HTML \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 gulp.task("fileinclude", function() {
   var injectFiles = gulp.src([
     "build/Assets/styles/build.css",
@@ -33,13 +43,7 @@ gulp.task("fileinclude", function() {
   };
 
   gulp
-    .src(["src/*.html"])
-    .pipe(
-      fileinclude({
-        prefix: "@@",
-        basepath: "@file"
-      })
-    )
+    .src(jsSrc)
     .pipe(htmlPartial(partialOptions))
     .pipe(inject(injectFiles, injectOptions))
     
@@ -49,12 +53,8 @@ gulp.task("fileinclude", function() {
 // JS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 gulp.task("scripts", function() {
   return gulp
-    .src([
-
-      
-      "src/scripts/*.js",
-
-    ])
+    .src(["src/scripts/*.js",
+])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat("build.js"))
@@ -77,7 +77,7 @@ gulp.task("styles", function() {
     .pipe(sass()) // compile
     .pipe(autoprefixer("last 2 versions")) // compatibilities
     .pipe(concat("build.css")) // bundle
-    .pipe(cssnano()) // minify
+    // .pipe(cssnano()) // minify
     .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest("build/assets/styles/"))
     .pipe(
@@ -112,8 +112,8 @@ gulp.task("watch", function() {
   gulp.watch("src/components/**/*.js", ["scripts"]);
   gulp.watch("src/scripts/*.js", ["scripts"]);
   gulp.watch("src/styles/**/*.scss", ["styles"]);
-  gulp.watch("src/styles/2-plugins/**/*.scss", ["styles"]);
-  gulp.watch("src/styles/3-base/**/*.scss", ["styles"]);
+  gulp.watch("src/styles/vendor/**/*.scss", ["styles"]);
+  gulp.watch("src/styles/dev/**/*.scss", ["styles"]);
   gulp.watch("src/components/**/*.scss", ["styles"]);
   gulp.watch("build/*.html", browserSync.reload);
   gulp.watch("build/assets/scripts/**/*.js", browserSync.reload);

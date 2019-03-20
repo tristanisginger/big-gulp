@@ -3,13 +3,13 @@
 //====================================
 
 // 1- Import bootstrap framework
-@import '1-frameworks/index';
+@import 'core/index';
 
 // 2 - Import plugins
-@import '2-plugins/index';
+@import 'vendor/index';
 
 // 3 - Import base style, custom variables and mixins
-@import '3-base/index';
+@import 'dev/index';
 
 // 4 - Import Components
 @import '../components/helloworld/helloworld';
